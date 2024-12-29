@@ -1,4 +1,4 @@
-package com.webdev.department;
+package com.webdev.departmentservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,21 +1,17 @@
-package com.webdev.department.entity;
+package com.webdev.departmentservice.entity;
 
-import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Enabled
+@Entity
 @Table(name = "departments")
 public class Department {
 

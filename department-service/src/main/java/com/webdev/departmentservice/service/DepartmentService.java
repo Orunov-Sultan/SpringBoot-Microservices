@@ -4,4 +4,5 @@ import com.webdev.departmentservice.dto.DepartmentDto;
 
 public interface DepartmentService {
     DepartmentDto addDepartment(DepartmentDto departmentDto);
+    DepartmentDto findDepartmentByCode(String code);
 }

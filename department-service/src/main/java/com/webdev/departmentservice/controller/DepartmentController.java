@@ -26,4 +26,10 @@ public class DepartmentController {
         DepartmentDto departmentDto = departmentService.findDepartmentByCode(code);
         return ResponseEntity.ok(departmentDto);
     }
+
+    @GetMapping
+    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
+        List<DepartmentDto> departmentsDto = departmentService.getAllDepartments();
+        return ResponseEntity.ok(departmentsDto);
+    }
 }

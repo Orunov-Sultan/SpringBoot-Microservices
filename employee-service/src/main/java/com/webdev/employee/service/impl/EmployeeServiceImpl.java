@@ -3,6 +3,7 @@ package com.webdev.employee.service.impl;
 import com.webdev.employee.dto.APIResponseDto;
 import com.webdev.employee.dto.DepartmentDto;
 import com.webdev.employee.dto.EmployeeDto;
+import com.webdev.employee.dto.OrganizationDto;
 import com.webdev.employee.entity.Employee;
 import com.webdev.employee.repository.EmployeeRepository;
 import com.webdev.employee.service.APIClient;
@@ -20,8 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private ModelMapper modelMapper;
-//    private RestTemplate restTemplate;
-//    private WebClient webClient;
+    private WebClient webClient;
     private APIClient apiClient;
 
     @Override
@@ -50,9 +50,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         DepartmentDto departmentDto = apiClient.getDepartmentsByCode(employee.getDepartmentCode());
 
+        OrganizationDto organizationDto = webClient.get()
+                .uri("http://localhost:8070/api/organizations/" + employee.getOrganizationCode())
+                .retrieve()
+                .bodyToMono(OrganizationDto.class)
+                .block();
+
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(modelMapper.map(employee, EmployeeDto.class));
         apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setOrganization(organizationDto);
 
         return apiResponseDto;
     }
